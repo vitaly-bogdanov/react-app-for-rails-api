@@ -5,3 +5,7 @@ export const getValidateClassHelper = (errors, touched) => {
     return '';
   }
 }
+
+export const getDinamicPathForOneParam = (path, param) => {
+  return `${path.split(':')[0]}${param}`;
+}

@@ -7,7 +7,7 @@ import {
 } from '../../config/validates';
 import { getValidateClassHelper } from '../../config/helpers'
 import Alert from '../alert/Alert';
-
+import { withRouter } from 'react-router-dom';
 
 const PostForm = props => {
 
@@ -23,6 +23,7 @@ const PostForm = props => {
           if (serverImageError.length) {
             setServerImageError([]);
           }
+
         } else if (response.status === 403) {
           if (response.errors.image) {
             setServerImageError(response.errors.image);
@@ -65,4 +66,4 @@ const PostForm = props => {
   );
 }
 
-export default PostForm;
+export default withRouter(PostForm);

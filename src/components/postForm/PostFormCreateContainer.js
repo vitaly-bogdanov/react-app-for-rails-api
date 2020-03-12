@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PostForm from './PostForm';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { addPostCreator } from '../../redux/actions/actionCreators';
 
 class PostFormCreateContainer extends Component {
 
@@ -18,11 +20,10 @@ class PostFormCreateContainer extends Component {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log(response);
+      this.props.addPostAction(response.data);
       return {status: response.status};
     } catch(error) {
-      console.log(error);
-      return {status: error.response.status, errors: error.response.data.errors}
+      return {status: error.response.status, errors: error.response.data.errors};
     }
   }
 
@@ -36,11 +37,15 @@ class PostFormCreateContainer extends Component {
 
     return (
       <PostForm 
-        sendPost={this.createPost}
+        sendPost={this.createPost.bind(this)}
         initialValues={initialValues}
       />
     );
   }
 }
 
-export default PostFormCreateContainer;
+const mapDispatchToProps = dispatch => ({
+  addPostAction: post => dispatch(addPostCreator(post))
+});
+
+export default connect(null, mapDispatchToProps)(PostFormCreateContainer);

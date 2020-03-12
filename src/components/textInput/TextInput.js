@@ -12,7 +12,7 @@ const TextInput = props => {
         name={props.name} 
         id={props.name}
         validate={props.validate} 
-        type="text"
+        type={props.type || "text"}
         className={fieldClasses.join(' ')}
       />
       <small className='invalid-feedback'>

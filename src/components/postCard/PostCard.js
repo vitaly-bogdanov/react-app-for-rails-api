@@ -2,6 +2,8 @@ import React, { Suspense, lazy } from 'react';
 import { Link } from 'react-router-dom';
 import { InView } from 'react-intersection-observer';
 import classes from './postCard.module.scss';
+import { post } from '../../config/routes';
+import { getDinamicPathForOneParam } from '../../config/helpers';
 
 const PostCardImage = lazy(() => import('../postCardImage/PostCardImage'));
 
@@ -25,7 +27,7 @@ const PostCard = props => (
     <div className="card-body">
       <h5 className="card-title">{props.title}</h5>
       <p className="card-text">{props.description}</p>
-      <Link className="btn btn-primary" to={`posts/${props.postId}`} exact={false}>Читать</Link>
+      <Link className="btn btn-primary" to={getDinamicPathForOneParam(post.path, props.postId)} exact={false}>Читать</Link>
     </div>
   </div>
 );

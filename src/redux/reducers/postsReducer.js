@@ -1,6 +1,7 @@
 import { 
   GET_POSTS,
-  DELETE_POST
+  DELETE_POST,
+  ADD_POST
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -12,6 +13,13 @@ const postsReducer = (state = initialState, action) => {
     case GET_POSTS:
       return {
         postsList: action.payload.posts
+      }
+    case ADD_POST:
+      return {
+        postsList: [
+          ...state.postsList,
+          action.payload.post
+        ]
       }
     case DELETE_POST:
       return {
