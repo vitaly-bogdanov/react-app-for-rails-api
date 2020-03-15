@@ -8,9 +8,9 @@ import {
 import { getValidateClassHelper } from '../../config/helpers'
 import Alert from '../alert/Alert';
 import { withRouter } from 'react-router-dom';
+import { postsList } from '../../config/routes';
 
 const PostForm = props => {
-
   let [serverImageError, setServerImageError] = useState([]);
 
   return (
@@ -23,7 +23,9 @@ const PostForm = props => {
           if (serverImageError.length) {
             setServerImageError([]);
           }
-
+          console.log('---');
+          props.history.push(postsList.path);
+          console.log('---');
         } else if (response.status === 403) {
           if (response.errors.image) {
             setServerImageError(response.errors.image);
@@ -38,7 +40,6 @@ const PostForm = props => {
             {
               serverImageError.length !== 0 ? <Alert type="danger" errors={serverImageError} /> : null
             }
-
             <TextInput
               name='title'
               validate={textValidationCreator(5, 15)}

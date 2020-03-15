@@ -6,6 +6,8 @@ import PostsList from '../views/pages/admin/postsList/PostsListContainer';
 import PostCreator from '../views/pages/admin/postCreator/PostCreator';
 import PostUpdator from '../views/pages/admin/postUpdator/PostUpdator';
 
+import Registration from '../views/pages/client/registration/Registration';
+
 export const home = {
   name: 'Главная',
   path: '/',
@@ -29,7 +31,6 @@ export const posts = {
     admin: true,
   }
 }
-
 
 export const post = {
   name: '',
@@ -68,7 +69,7 @@ export const postCreator = {
 
 export const postUpdator = {
   name: 'Редактировать пост',
-  path: `/post-update/:id`,
+  path: '/post-update/:id',
   component: PostUpdator,
   exact: false,
   access: {
@@ -81,12 +82,11 @@ export const postUpdator = {
 export const registration = {
   name: 'Регистрация',
   path: '/registration',
-  component: '',
+  component: Registration,
   exact: false,
   access: {
     guest: true,
-    user: false,
-    admin: false
+    user: true,
+    admin: true
   }
 }
-

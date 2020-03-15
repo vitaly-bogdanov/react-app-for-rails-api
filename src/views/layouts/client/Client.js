@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import NavLinkButton from '../../../components/navLinkButton/NavLinkButton';
-import { home, posts } from '../../../config/routes';
+import { home, posts, registration } from '../../../config/routes';
 import classes from './client.module.scss';
 
 class Client extends Component {
@@ -23,14 +23,9 @@ class Client extends Component {
                 </ul>
               </div>
               <ul className="navbar-nav justify-content-end">
-                <li className="nav-item">
-                  <NavLinkButton name={home.name} exact={home.exact} to={home.path} />
-                </li>
-                <li className="nav-item">
-                  <NavLinkButton name={home.name} exact={home.exact} to={home.path} />
-                </li>
+                <NavLinkButton name={registration.name} exact={registration.exact} to={registration.path} />
+                <NavLinkButton name={registration.name} exact={registration.exact} to={registration.path} />
               </ul>
-
             </div>
           </nav>
         </header>

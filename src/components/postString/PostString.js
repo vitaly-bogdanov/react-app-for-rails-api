@@ -19,8 +19,7 @@ const PostString = props => (
     <div>
       <LinkButton
         name="Редактировать" 
-        to={props.to} 
-        exact={false} 
+        to={props.to}
         type={'info'} 
       />
     </div>
