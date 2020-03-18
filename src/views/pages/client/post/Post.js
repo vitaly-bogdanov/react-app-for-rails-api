@@ -8,7 +8,7 @@ import classes from './post.module.scss';
 class Post extends Component {
   
   render() {
-    let post = this.props.post(this.props.match.params.id);
+    let post = this.props.post(parseInt(this.props.match.params.id));
 
     const LargeImage = lazy(() => import('../../../../components/image/Image'));
     return (
@@ -44,7 +44,7 @@ class Post extends Component {
 }
 
 const mapStateToProps = state => ({
-  post: (id) => state.posts.postsList.find(post => post.id == id)
+  post: (id) => state.posts.postsList.find(post => post.id === id)
 });
 
 export default connect(mapStateToProps)(Post);

@@ -1,7 +1,8 @@
 import { 
   GET_POSTS,
   DELETE_POST,
-  ADD_POST
+  ADD_POST,
+  UPDATE_POST
 } from './actionTypes';
 
 export const getPostsCreator = posts => ({
@@ -16,5 +17,10 @@ export const deletePostCreator = id => ({
 
 export const addPostCreator = post => ({
   type: ADD_POST,
+  payload: { post }
+});
+
+export const updatePostCreator = post => ({
+  type: UPDATE_POST,
   payload: { post }
 });

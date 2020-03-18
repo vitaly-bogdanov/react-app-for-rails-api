@@ -18,14 +18,12 @@ const PostForm = props => {
       initialValues={props.initialValues}
       onSubmit={async (values, actions) => {
         let response = await props.sendPost(values);
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           actions.resetForm(props.initialValues);
           if (serverImageError.length) {
             setServerImageError([]);
           }
-          console.log('---');
           props.history.push(postsList.path);
-          console.log('---');
         } else if (response.status === 403) {
           if (response.errors.image) {
             setServerImageError(response.errors.image);

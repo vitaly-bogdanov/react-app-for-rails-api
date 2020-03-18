@@ -12,7 +12,6 @@ class Client extends Component {
         <header>
           <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <div className="container">
-              <a className="navbar-brand" href="#">Navbar</a>
               <button className="navbar-toggler" type="button">
                 <span className="navbar-toggler-icon"></span>
               </button>

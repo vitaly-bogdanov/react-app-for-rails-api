@@ -1,7 +1,8 @@
 import { 
   GET_POSTS,
   DELETE_POST,
-  ADD_POST
+  ADD_POST,
+  UPDATE_POST
 } from '../actions/actionTypes';
 
 const initialState = {
@@ -18,6 +19,13 @@ const postsReducer = (state = initialState, action) => {
       return {
         postsList: [
           ...state.postsList,
+          action.payload.post
+        ]
+      }
+    case UPDATE_POST:
+      return {
+        postsList: [
+          ...state.postsList.filter(post => post.id !== action.payload.post.id),
           action.payload.post
         ]
       }

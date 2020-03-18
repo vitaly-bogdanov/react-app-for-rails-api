@@ -4,21 +4,24 @@ import axios from 'axios';
 
 const RegistrationFormContainer = props => {
   
-  const registration = async values => {
+  const registrationHandler = async values => {
+    let data = {
+      name: values.name.trim().toLowerCase(),
+      password: values.password.trim(),
+      passwordConfirmation: values.passwordConfirmation.trim()
+    };
     try {
-      let response = await axios.post('', {
-
+      let response = await axios.post('http://localhost:3001/registrations', {
+        registrations: { ...data }
       });
-
-      return {};
+      return {status: response.status};
     } catch(error) {
-
-      return {};
+      return {status: error.response.status, errors: error.response.data.errors};
     }
   }
 
   return (
-    <RegistrationForm />
+    <RegistrationForm registration={registrationHandler} />
   );
 }
 
