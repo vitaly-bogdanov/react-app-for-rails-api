@@ -7,6 +7,7 @@ import PostCreator from '../views/pages/admin/postCreator/PostCreator';
 import PostUpdator from '../views/pages/admin/postUpdator/PostUpdator';
 
 import Registration from '../views/pages/client/registration/Registration';
+import Authentication from '../views/pages/client/authentication/Authentication';
 
 export const home = {
   name: 'Главная',
@@ -83,6 +84,18 @@ export const registration = {
   name: 'Регистрация',
   path: '/registration',
   component: Registration,
+  exact: false,
+  access: {
+    guest: true,
+    user: true,
+    admin: true
+  }
+}
+
+export const authentication = {
+  name: 'Авторизация',
+  path: '/authentication',
+  component: Authentication,
   exact: false,
   access: {
     guest: true,
