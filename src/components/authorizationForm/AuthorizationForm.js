@@ -21,7 +21,21 @@ const AuthorizationForm = props => {
     <Formik
       initialValues={initialValues}
       onSubmit={ async (values, actions) => {
-        console.log(values);
+        let response = await props.authorization(values);
+        if (response.status === 200) {
+          actions.resetForm(initialValues);
+          props.history.push(postsList.path);
+        } else if (response.status === 401) {
+          let errors = [];
+          Object.keys(response.errors).map((value, key) => {
+            errors = [
+              ...errors,
+              response.errors[value]
+            ];
+          });
+          console.log(errors);
+          setServerErrors(errors);
+        }
       }}
     >
       {

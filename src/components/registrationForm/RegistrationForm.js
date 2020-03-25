@@ -33,7 +33,7 @@ const RegistrationForm = props => {
           Object.keys(response.errors).map((value, key) => {
             errors = [
               ...errors,
-              ...response.errors[value]
+              response.errors[value]
             ];
           });
           setServerErrors(errors);
