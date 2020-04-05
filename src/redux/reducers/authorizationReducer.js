@@ -1,10 +1,12 @@
+import { AUTHORIZATION } from '../actions/actionTypes';
+
 const initialState = {
-  user: { name: 'Гость', access: 'user', email: '' }
+  user: { name: 'No name', access: 'guest' }
 }
 
 const authorizationReducer = (state = initialState, action) => {
   switch(action.type) {
-    case '':
+    case AUTHORIZATION:
       return {
         user: action.payload.user
       };

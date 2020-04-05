@@ -2,7 +2,8 @@ import {
   GET_POSTS,
   DELETE_POST,
   ADD_POST,
-  UPDATE_POST
+  UPDATE_POST,
+  AUTHORIZATION
 } from './actionTypes';
 
 export const getPostsCreator = posts => ({
@@ -23,4 +24,9 @@ export const addPostCreator = post => ({
 export const updatePostCreator = post => ({
   type: UPDATE_POST,
   payload: { post }
+});
+
+export const authorizationCreator = user => ({
+  type: AUTHORIZATION,
+  payload: { user }
 });

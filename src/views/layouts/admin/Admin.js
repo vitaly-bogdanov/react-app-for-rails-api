@@ -5,11 +5,11 @@ import {
   postCreator
 } from '../../../config/routes';
 import classes from './admin.module.scss';
+import { connect } from 'react-redux';
 
 class Admin extends Component {
   
   render() {
-
     return (
       <Fragment>
         <header>
@@ -31,6 +31,9 @@ class Admin extends Component {
                     to={postCreator.path} 
                   />
                 </ul>
+                <ul className="navbar-nav justify-content-end">
+                  <p>{this.props.user.name}</p>
+                </ul>
               </div>
             </div>
           </nav>
@@ -48,4 +51,8 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+const mapStateToProps = state => ({
+  user: state.authorization.user
+});
+
+export default connect(mapStateToProps)(Admin);

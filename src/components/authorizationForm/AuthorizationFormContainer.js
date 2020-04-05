@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import AuthorizationForm from './AuthorizationForm';
+import { authorizationCreator } from '../../redux/actions/actionCreators';
+import { connect } from 'react-redux';
 
 const AuthorizationFormContainer = props => {
 
@@ -20,8 +22,15 @@ const AuthorizationFormContainer = props => {
   }
 
   return (
-    <AuthorizationForm authorization={authorizationHandler} />
+    <AuthorizationForm 
+      authorization={authorizationHandler}
+      authorizationAction={props.authorizationAction}
+    />
   );
 }
 
-export default AuthorizationFormContainer;
+const mapDispatchToProps = dispatch => ({
+  authorizationAction: user => dispatch(authorizationCreator(user))
+});
+
+export default connect(null, mapDispatchToProps)(AuthorizationFormContainer);

@@ -25,6 +25,7 @@ const AuthorizationForm = props => {
         if (response.status === 200) {
           actions.resetForm(initialValues);
           props.history.push(postsList.path);
+          props.authorizationAction(response.data);
         } else if (response.status === 401) {
           let errors = [];
           Object.keys(response.errors).map((value, key) => {

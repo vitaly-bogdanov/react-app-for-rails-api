@@ -1,6 +1,8 @@
 import React from 'react';
 import RegistrationForm from './RegistrationForm';
 import axios from 'axios';
+import { authorizationCreator } from '../../redux/actions/actionCreators';
+import { connect } from 'react-redux';
 
 const RegistrationFormContainer = props => {
   
@@ -21,8 +23,15 @@ const RegistrationFormContainer = props => {
   }
 
   return (
-    <RegistrationForm registration={registrationHandler} />
+    <RegistrationForm 
+      registration={registrationHandler}
+      authorizationAction={props.authorizationAction}
+    />
   );
 }
 
-export default RegistrationFormContainer;
+const mapDispatchToProps = dispatch => ({
+  authorizationAction: user => dispatch(authorizationCreator(user))
+});
+
+export default connect(null, mapDispatchToProps)(RegistrationFormContainer);

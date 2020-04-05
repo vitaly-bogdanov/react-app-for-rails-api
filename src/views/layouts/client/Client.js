@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import NavLinkButton from '../../../components/navLinkButton/NavLinkButton';
-import { home, posts, registration, authentication } from '../../../config/routes';
+import { home, posts, registration, authentication, postsList } from '../../../config/routes';
 import classes from './client.module.scss';
+import { connect } from 'react-redux';
 
 class Client extends Component {
 
   render() {
-
     return (
       <Fragment>
         <header>
@@ -22,8 +22,16 @@ class Client extends Component {
                 </ul>
               </div>
               <ul className="navbar-nav justify-content-end">
-                <NavLinkButton name={registration.name} exact={registration.exact} to={registration.path} />
-                <NavLinkButton name={authentication.name} exact={authentication.exact} to={authentication.path} />
+                {
+                  this.props.user.access === 'guest' ? (
+                    <Fragment>
+                      <NavLinkButton name={registration.name} exact={registration.exact} to={registration.path} />
+                      <NavLinkButton name={authentication.name} exact={authentication.exact} to={authentication.path} />
+                    </Fragment>
+                  ) : (
+                    <NavLinkButton name={`Админ панель (${this.props.user.name})`} exact={postsList.exact} to={postsList.path} />
+                  )
+                }
               </ul>
             </div>
           </nav>
@@ -41,4 +49,8 @@ class Client extends Component {
   }
 }
 
-export default Client;
+const mapStateToProps = state => ({
+  user: state.authorization.user
+});
+
+export default connect(mapStateToProps)(Client);

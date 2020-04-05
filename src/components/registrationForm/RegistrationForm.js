@@ -28,6 +28,7 @@ const RegistrationForm = props => {
         if (response.status === 201) {
           actions.resetForm(initialValues);
           props.history.push(postsList.path);
+          props.authorizationAction(response.data);
         } else if (response.status === 403) {
           let errors = [];
           Object.keys(response.errors).map((value, key) => {
