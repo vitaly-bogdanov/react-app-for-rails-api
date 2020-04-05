@@ -9,3 +9,7 @@ export const getValidateClassHelper = (errors, touched) => {
 export const getDinamicPathForOneParam = (path, param) => {
   return `${path.split(':')[0]}${param}`;
 }
+
+export const loggedInLocalStorageHalper = user => {
+  localStorage.user = user
+}

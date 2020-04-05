@@ -3,6 +3,7 @@ import {
   getPostsCreator,
   deletePostCreator
 } from './actions/actionCreators';
+import { loggedInLocalStorageHalper } from '../config/helpers';
 
 export const getPostThunk = () => dispatch => {
   axios.get('http://localhost:3001').then(response => {
@@ -19,5 +20,13 @@ export const deletePostThunk = (id) => dispatch => {
     }
   }).catch(error => {
     console.log(error);
+  });
+}
+
+export const checkLoggedInThunk = () => dispatch => {
+  axios.get().then(response => {
+    loggedInLocalStorageHalper(response.data.user);
+    dispatch();
+    dispatch();
   });
 }
