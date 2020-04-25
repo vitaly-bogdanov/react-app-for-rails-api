@@ -1,17 +1,15 @@
 import axios from 'axios';
 import { 
   getPostsCreator,
-  deletePostCreator
+  deletePostCreator,
+  authorizationCreator
 } from './actions/actionCreators';
 import { loggedInLocalStorageHalper } from '../config/helpers';
 
-export const getPostThunk = () => dispatch => {
-  axios.get('http://localhost:3001').then(response => {
-    dispatch(getPostsCreator(response.data));
-  }).catch(error => {
-    console.error(error);
-  })
-}
+import { apiGetPosts } from '../config/Api';
+
+// подгрузить все посты
+export const getPostsThunk = () => dispatch => apiGetPosts(data => dispatch(getPostsCreator(data)));
 
 export const deletePostThunk = (id) => dispatch => {
   axios.delete(`http://localhost:3001/posts/${id}`).then(response => {
@@ -23,10 +21,13 @@ export const deletePostThunk = (id) => dispatch => {
   });
 }
 
-export const checkLoggedInThunk = () => dispatch => {
-  axios.get().then(response => {
-    loggedInLocalStorageHalper(response.data.user);
-    dispatch();
-    dispatch();
+export const loggedInThunk = () => dispatch => {
+  axios.get('http://localhost:3001/logged-in', { withCredentials: true }).then(response => {
+    // console.dir(response);
+    // loggedInLocalStorageHalper(response.data.user);
+    // dispatch(authorizationCreator(response.data.user));
+    // dispatch(getPostsCreator(response.data.posts));
+  }).catch(error => {
+    console.dir(error);
   });
 }

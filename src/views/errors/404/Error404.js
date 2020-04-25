@@ -1,13 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { home } from '../../../config/routes';
+import { connect } from 'react-redux';
+
 
 class Error404 extends Component {
 
   render() {
-
-    console.log('hhhvvgvh');
-
     return (
       <Fragment>
         <div className="container">
@@ -19,4 +18,8 @@ class Error404 extends Component {
   }
 }
 
-export default Error404;
+const mapStateToProps = state => ({
+  user: state.authorization.user
+});
+
+export default connect(mapStateToProps)(Error404);

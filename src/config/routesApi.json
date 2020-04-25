@@ -1,0 +1,10 @@
+{
+  "v1": {
+    "posts": {
+      "create": {"path": "/api/v1/posts", "method": "post"},
+      "read": {"path": "/api/v1/posts", "method": "get"},
+      "update": {"path": "/api/v1/posts/:id", "method": "patch"},
+      "delete": {"path": "/api/v1/posts/:id", "method": "delete"}
+    }
+  }
+}

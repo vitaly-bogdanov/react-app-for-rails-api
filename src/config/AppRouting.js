@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Error404 from '../views/errors/404/Error404';
 
 const AppRouting = props => {
+  localStorage.removeItem('user');
   return (
     <Switch>
       {
@@ -18,7 +19,6 @@ const AppRouting = props => {
             />) : null
         })
       }
-
       <Route 
         path="/404"
         component={Error404} 
@@ -29,7 +29,8 @@ const AppRouting = props => {
 }
 
 const mapStateToProps = state => ({
-  access: state.authorization.user.access
+  access: state.authorization.user.access,
+  user: state.authorization.user
 });
 
 export default connect(mapStateToProps)(AppRouting);

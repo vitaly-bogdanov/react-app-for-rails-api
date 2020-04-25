@@ -1,7 +1,7 @@
 import { AUTHORIZATION } from '../actions/actionTypes';
 
 const initialState = {
-  user: { name: 'No name', access: 'guest' }
+  user: localStorage.user || { name: 'No name', access: 'guest' }
 }
 
 const authorizationReducer = (state = initialState, action) => {

@@ -3,6 +3,7 @@ import RegistrationForm from './RegistrationForm';
 import axios from 'axios';
 import { authorizationCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
+import { loggedInLocalStorageHalper } from '../../config/helpers';
 
 const RegistrationFormContainer = props => {
   
@@ -15,9 +16,14 @@ const RegistrationFormContainer = props => {
     try {
       let response = await axios.post('http://localhost:3001/registrations', {
         registrations: { ...data }
+      }, {
+        withCredentials: true
       });
+      console.log(response);
+      // loggedInLocalStorageHalper(response.data.user);
       return {status: response.status};
     } catch(error) {
+      console.dir(error);
       return {status: error.response.status, errors: error.response.data.errors};
     }
   }
@@ -25,7 +31,7 @@ const RegistrationFormContainer = props => {
   return (
     <RegistrationForm 
       registration={registrationHandler}
-      authorizationAction={props.authorizationAction}
+      // authorizationAction={props.authorizationAction}
     />
   );
 }

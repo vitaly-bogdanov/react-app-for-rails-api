@@ -62,7 +62,7 @@ export const postCreator = {
   component: PostCreator,
   exact: false,
   access: {
-    guest: false,
+    guest: true,
     user: true,
     admin: true
   }
@@ -74,7 +74,7 @@ export const postUpdator = {
   component: PostUpdator,
   exact: false,
   access: {
-    guest: false,
+    guest: true,
     user: true,
     admin: true
   }

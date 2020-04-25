@@ -4,7 +4,6 @@ import Posts from './Posts';
 class PostsContainer extends Component {
 
   render() {
-
     return (
       <Posts />
     );

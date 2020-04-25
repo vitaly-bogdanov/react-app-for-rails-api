@@ -1,3 +1,5 @@
+import { baseUrl } from './constants';
+
 export const getValidateClassHelper = (errors, touched) => {
   if (touched) {
     return errors ? 'is-invalid' : 'is-valid';
@@ -11,5 +13,13 @@ export const getDinamicPathForOneParam = (path, param) => {
 }
 
 export const loggedInLocalStorageHalper = user => {
-  localStorage.user = user
+  localStorage.user = user;
+}
+
+export const apiUrlHelper = (url, id) => {
+  if (id) {
+
+  } else {
+    return baseUrl + url;
+  }
 }

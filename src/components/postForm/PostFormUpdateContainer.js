@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import PostForm from './PostForm';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import Image from '../image/Image'; 
 import { updatePostCreator } from '../../redux/actions/actionCreators';
+import { apiUpdatePost } from '../../config/Api';
 
 class PostFormUpdateContainer extends Component {
 
@@ -14,21 +14,24 @@ class PostFormUpdateContainer extends Component {
     formData.append('description', values.description.trim());
     formData.append('body', values.body.trim());
     formData.append('image', values.image);
-    try {
-      let response = await axios.post(`http://localhost:3001/update/${values.id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+    return await apiUpdatePost(formData, this.props.match.params.id, response => {
       this.props.updatePost(response.data);
-      return {status: response.status};
-    } catch(error) {
-      if (error.response.status === 422) {
-        return {status: error.response.status, errors: error.response.data.errors};
-      } else {
-        console.error(error);
-      }
-    }
+    });
+    // try {
+    //   let response = await axios.post(`http://localhost:3001/update/${values.id}`, formData, {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   });
+    //   this.props.updatePost(response.data);
+    //   return {status: response.status};
+    // } catch(error) {
+    //   if (error.response.status === 422) {
+    //     return {status: error.response.status, errors: error.response.data.errors};
+    //   } else {
+    //     console.error(error);
+    //   }
+    // }
   }
 
   render() {

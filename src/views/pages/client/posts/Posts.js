@@ -5,7 +5,6 @@ import classes from './posts.module.scss';
 import PostCard from '../../../../components/postCard/PostCard';
 import { connect } from 'react-redux';
 
-
 class Posts extends React.Component {
 
   render() {
@@ -19,7 +18,6 @@ class Posts extends React.Component {
                 this.props.postsList.map((post, key) => (
                   <PostCard
                     key={key}
-
                     title={post.title}
                     description={post.description}
                     imageLink={post.middle_image}
