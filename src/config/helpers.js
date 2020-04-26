@@ -18,7 +18,7 @@ export const loggedInLocalStorageHalper = user => {
 
 export const apiUrlHelper = (url, id) => {
   if (id) {
-
+    return baseUrl + url.split(':')[0] + id;
   } else {
     return baseUrl + url;
   }

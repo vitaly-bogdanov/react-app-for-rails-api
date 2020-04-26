@@ -1,13 +1,25 @@
 import React, { Component } from 'react';
 import PostsList from './PostsList';
 import { connect } from 'react-redux';
+import { deletePostCreator } from '../../../../redux/actions/actionCreators';
 
 class PostsListContainer extends Component {
+
+  deletePost(id) {
+    console.log(id);
+    // apiDeletePost(id, response => {
+    //   console.log(id);
+    //   console.log(response);
+    //   this.deletePostAction(id);
+    // });
+  }
   
   render() {
-
     return (
-      <PostsList posts={this.props.postsList} />
+      <PostsList 
+        posts={this.props.postsList}
+        deletePost={this.deletePost.bind(this)}
+      />
     );
   }
 }
@@ -15,5 +27,8 @@ class PostsListContainer extends Component {
 const mapStateToProps = state => ({
   postsList: state.posts.postsList
 });
+const mapDispatchToProps = dispatch => ({
+  deletePostAction: id => dispatch(deletePostCreator(id))
+});
 
-export default connect(mapStateToProps)(PostsListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsListContainer);

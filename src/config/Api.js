@@ -1,7 +1,6 @@
 import axios from 'axios';
 import routesApi from './routesApi.json';
 import { apiUrlHelper } from './helpers';
-import { getDinamicPathForOneParam } from '../config/helpers';
 
 /* CRUD posts actions */
 // CREATE
@@ -39,13 +38,10 @@ export const apiGetPosts = (callbackResponse, callbackError) => {
 
 // UPDATE
 export const apiUpdatePost = async (formData, id, callbackResponse, callbackError) => {
-  console.log(id);
-  console.log(routesApi.v1.posts.update.path);
-  console.log(getDinamicPathForOneParam(apiUrlHelper(routesApi.v1.posts.update.path), id));
   try {
     let response = await axios({
       method: routesApi.v1.posts.update.method,
-      url: apiUrlHelper(routesApi.v1.posts.update.path),
+      url: apiUrlHelper(routesApi.v1.posts.update.path, id),
       data: formData,
       headers: { 'Content-Type': 'multipart/form-data' }
     });
@@ -61,6 +57,14 @@ export const apiUpdatePost = async (formData, id, callbackResponse, callbackErro
 }
 
 // DELETE
-export const apiDeletePost = () => {
-
+export const apiDeletePost = async (id, callbackResponse, callbackError) => {
+  try {
+    let response = await axios({
+      method: routesApi.v1.posts.delete.method,
+      url: apiUrlHelper(routesApi.v1.posts.delete.path, id)
+    });
+    callbackResponse && callbackResponse(response);
+  } catch (error) {
+    callbackError && callbackError(error);
+  }
 }

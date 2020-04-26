@@ -23,6 +23,8 @@ class PostsList extends Component {
                       title={post.title} 
                       to={getDinamicPathForOneParam(postUpdator.path, post.id)} 
                       image={post.thumb_image} 
+
+                      deletePost={this.props.deletePost}
                     />
                   );
                 })

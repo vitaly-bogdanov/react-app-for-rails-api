@@ -5,7 +5,9 @@ import classes from './postString.module.scss';
 import { connect } from 'react-redux';
 import { deletePostThunk } from '../../redux/middlewares';
 
-const PostString = props => (
+const PostString = props => {
+  console.log(props);
+  return (
   <li className={`list-group-item ${classes.postString}`}>
     <div>
       <Image 
@@ -26,11 +28,12 @@ const PostString = props => (
     <div>
       <p 
         className={classes.delete}
-        onClick={() => props.deletePostAction(props.id)}
+        onClick={props.deletePost(props.id)}
+        // onClick={() => props.deletePostAction(props.id)}
       >&times;</p>
     </div>
   </li>
-);
+)};
 
 const mapDispatchToProps = dispatch => ({
   deletePostAction: (id) => dispatch(deletePostThunk(id))
