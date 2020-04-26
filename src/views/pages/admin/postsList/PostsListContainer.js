@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import PostsList from './PostsList';
 import { connect } from 'react-redux';
 import { deletePostCreator } from '../../../../redux/actions/actionCreators';
+import { apiDeletePost } from '../../../../config/Api';
 
 class PostsListContainer extends Component {
 
   deletePost(id) {
-    console.log(id);
-    // apiDeletePost(id, response => {
-    //   console.log(id);
-    //   console.log(response);
-    //   this.deletePostAction(id);
-    // });
+    apiDeletePost(id, response => {
+      console.log(id);
+      console.log(response);
+      this.deletePostAction(id);
+    });
   }
   
   render() {

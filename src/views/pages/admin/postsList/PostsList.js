@@ -5,9 +5,7 @@ import { postUpdator } from '../../../../config/routes';
 import { getDinamicPathForOneParam } from '../../../../config/helpers';
 
 class PostsList extends Component {
-
   render() {
-
     return (
       <Admin>
         <section>
@@ -29,7 +27,6 @@ class PostsList extends Component {
                   );
                 })
               }
-              
             </ul>
           </div>
         </section>
