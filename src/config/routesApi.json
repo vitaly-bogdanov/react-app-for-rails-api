@@ -5,6 +5,9 @@
       "read": {"path": "/api/v1/posts", "method": "get"},
       "update": {"path": "/api/v1/posts/:id", "method": "patch"},
       "delete": {"path": "/api/v1/posts/:id", "method": "delete"}
+    },
+    "sessions": {
+      "loggedIn": {"path": "/api/v1/sessions/logged-in", "method": "get"}
     }
   }
 }

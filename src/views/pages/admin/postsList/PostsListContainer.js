@@ -8,9 +8,7 @@ class PostsListContainer extends Component {
 
   deletePost(id) {
     apiDeletePost(id, response => {
-      console.log(id);
-      console.log(response);
-      this.deletePostAction(id);
+      this.props.deletePostAction(id);
     });
   }
   

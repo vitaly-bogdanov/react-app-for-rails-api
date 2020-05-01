@@ -6,7 +6,6 @@ import { loggedInThunk, getPostsThunk } from './redux/middlewares';
 class App extends Component {
 
   componentDidMount() {
-    this.props.getPosts();
     this.props.loggedIn();
   }
 

@@ -68,3 +68,17 @@ export const apiDeletePost = async (id, callbackResponse, callbackError) => {
     callbackError && callbackError(error);
   }
 }
+
+// проверка есть ли ползователь в сессии
+export const apiLoggedIn = async (callbackResponse, callbackError) => {
+  try {
+    let response = await axios({ 
+      method: routesApi.v1.sessions.loggedIn.method,
+      url: apiUrlHelper(routesApi.v1.sessions.loggedIn.path),
+      withCredentials: true 
+    });
+    callbackResponse && callbackResponse(response);
+  } catch (error) {
+    callbackError && callbackError(error);
+  }
+}
