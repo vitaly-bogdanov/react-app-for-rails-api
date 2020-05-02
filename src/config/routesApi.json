@@ -7,7 +7,11 @@
       "delete": {"path": "/api/v1/posts/:id", "method": "delete"}
     },
     "sessions": {
-      "loggedIn": {"path": "/api/v1/sessions/logged-in", "method": "get"}
+      "loggedIn": {"path": "/api/v1/sessions/logged-in", "method": "get"},
+      "logout": {"path": "/api/v1/sessions/logout", "method": "delete"}
+    },
+    "users": {
+      "create": {"path": "/api/v1/users/create", "method": "post"}
     }
   }
 }

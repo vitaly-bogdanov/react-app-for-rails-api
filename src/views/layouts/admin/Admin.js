@@ -1,13 +1,27 @@
 import React, { Fragment, Component } from 'react';
 import NavLinkButton from '../../../components/navLinkButton/NavLinkButton';
-import { 
-  postsList, 
-  postCreator
-} from '../../../config/routes';
+import { postsList, postCreator } from '../../../config/routes';
 import classes from './admin.module.scss';
 import { connect } from 'react-redux';
+import { apiLogout } from '../../../config/Api';
+import { authorizationCreator } from '../../../redux/actions/actionCreators';
+import { withRouter } from 'react-router-dom';
+import { getUserFromLocalStorageHelper } from '../../../config/helpers';
 
 class Admin extends Component {
+
+  logout() {
+    console.log(getUserFromLocalStorageHelper());
+    console.dir(localStorage.user);
+    // apiLogout(response => {
+    //   //console.log(response);
+    //   console.log(this.props);
+    //   // сбрасываем user state
+    //   //this.props.authorizationAction({name: 'No name', access: 'guest'});
+    //   // очищаем localStorage
+    //   //localStorage.removeItem('user');
+    // }); 
+  }
   
   render() {
     return (
@@ -18,7 +32,7 @@ class Admin extends Component {
               <button className="navbar-toggler" type="button">
                 <span className="navbar-toggler-icon"></span>
               </button>
-              <div className="collapse navbar-collapse" id="navbarNav">
+              <div className={`collapse navbar-collapse ${classes.navbarFlexbox}`} id="navbarNav">
                 <ul className="navbar-nav">
                   <NavLinkButton 
                     name={postsList.name} 
@@ -31,8 +45,12 @@ class Admin extends Component {
                     to={postCreator.path} 
                   />
                 </ul>
-                <ul className="navbar-nav justify-content-end">
-                  <p>{this.props.user.name}</p>
+                <ul className="navbar-nav">
+                  <li className="nav-item text-warning">{this.props.user.name}</li>
+                  <li 
+                    className={`text-danger ${classes.exitButtonPosition}`}
+                    onClick={() => this.logout()}
+                  >Выйти</li>
                 </ul>
               </div>
             </div>
@@ -55,4 +73,8 @@ const mapStateToProps = state => ({
   user: state.authorization.user
 });
 
-export default connect(mapStateToProps)(Admin);
+const mapDispatchProps = dispatch => ({
+  authorizationAction: user => dispatch(authorizationCreator(user))
+});
+
+export default withRouter(connect(mapStateToProps, mapDispatchProps)(Admin));

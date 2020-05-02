@@ -50,7 +50,7 @@ export const postsList = {
   path: '/posts-list',
   component: PostsList,
   access: {
-    guest: true,
+    guest: false,
     user: true,
     admin: true
   }
@@ -62,7 +62,7 @@ export const postCreator = {
   component: PostCreator,
   exact: false,
   access: {
-    guest: true,
+    guest: false,
     user: true,
     admin: true
   }

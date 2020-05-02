@@ -18,7 +18,7 @@ export const apiCreatePost = async (formData, callbackResponse, callbackError) =
     callbackError && callbackError();
     return {status: error.response.status, errors: error.response.data.errors};
   }
-}
+};
 
 // READ
 export const apiGetPosts = (callbackResponse, callbackError) => {
@@ -34,7 +34,7 @@ export const apiGetPosts = (callbackResponse, callbackError) => {
       ? callbackError(error) 
       : console.error(error);
   });
-}
+};
 
 // UPDATE
 export const apiUpdatePost = async (formData, id, callbackResponse, callbackError) => {
@@ -54,7 +54,7 @@ export const apiUpdatePost = async (formData, id, callbackResponse, callbackErro
       console.error(error);
     }
   }
-}
+};
 
 // DELETE
 export const apiDeletePost = async (id, callbackResponse, callbackError) => {
@@ -67,7 +67,7 @@ export const apiDeletePost = async (id, callbackResponse, callbackError) => {
   } catch (error) {
     callbackError && callbackError(error);
   }
-}
+};
 
 // проверка есть ли ползователь в сессии
 export const apiLoggedIn = async (callbackResponse, callbackError) => {
@@ -80,5 +80,39 @@ export const apiLoggedIn = async (callbackResponse, callbackError) => {
     callbackResponse && callbackResponse(response);
   } catch (error) {
     callbackError && callbackError(error);
+  }
+};
+
+// регистрация
+export const apiRegistration = async (formData, callbackResponse, callbackError) => {
+  try {
+    let response = await axios({
+      method: routesApi.v1.users.create.method,
+      url: apiUrlHelper(routesApi.v1.users.create.path),
+      data: formData,
+      withCredentials: true
+    });
+    callbackResponse && callbackResponse(response);
+    return {status: response.status};
+  } catch (error) {
+    callbackError && callbackError(error);
+    return {status: error.response.status, errors: error.response.data.errors};
+  }
+}
+
+// авторизация
+
+
+// выход
+export const apiLogout = async (callbackResponse, callbackError) => {
+  try {
+    let response = await axios({
+      method: routesApi.v1.sessions.logout.method,
+      url: apiUrlHelper(routesApi.v1.sessions.logout.path),
+      withCredentials: true
+    });
+    callbackResponse && callbackResponse(response);
+  } catch (error) {
+    callbackError && await callbackError(error);
   }
 }

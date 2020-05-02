@@ -1,7 +1,8 @@
 import { AUTHORIZATION } from '../actions/actionTypes';
+import { getUserFromLocalStorageHelper } from '../../config/helpers';
 
 const initialState = {
-  user: localStorage.user || { name: 'No name', access: 'guest' }
+  user: getUserFromLocalStorageHelper() || { name: 'No name', access: 'guest' }
 }
 
 const authorizationReducer = (state = initialState, action) => {

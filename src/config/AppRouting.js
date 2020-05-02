@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import Error404 from '../views/errors/404/Error404';
 
 const AppRouting = props => {
-  localStorage.removeItem('user');
   return (
     <Switch>
       {

@@ -13,7 +13,13 @@ export const getDinamicPathForOneParam = (path, param) => {
 }
 
 export const loggedInLocalStorageHalper = user => {
-  localStorage.user = user;
+  localStorage.user = JSON.stringify(user);
+}
+
+export const getUserFromLocalStorageHelper = () => {
+  if (localStorage.user) {
+    return JSON.parse(localStorage.user);
+  }
 }
 
 export const apiUrlHelper = (url, id) => {

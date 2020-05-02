@@ -14,9 +14,9 @@ export const getPostsThunk = () => dispatch => apiGetPosts(data => dispatch(getP
 // и подгрузка всех постов
 export const loggedInThunk = () => dispatch => {
   apiLoggedIn(response => {
-    loggedInLocalStorageHalper(response.data.user);
     dispatch(authorizationCreator(response.data.user));
     dispatch(getPostsCreator(response.data.posts));
+    loggedInLocalStorageHalper(response.data.user);
   }, error => {
     dispatch(getPostsCreator(error.response.data.posts));
   });

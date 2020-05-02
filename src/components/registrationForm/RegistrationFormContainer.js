@@ -14,7 +14,7 @@ const RegistrationFormContainer = props => {
       passwordConfirmation: values.passwordConfirmation.trim()
     };
     return await apiRegistration(formData, response => {
-      props.authorizationAction(response.data);
+      props.authorizationAction(response.data.user);
       loggedInLocalStorageHalper(response.data.user)
     });
   }
