@@ -1,8 +1,4 @@
-import axios from 'axios';
-import { 
-  getPostsCreator,
-  authorizationCreator
-} from './actions/actionCreators';
+import { getPostsCreator, authorizationCreator } from './actions/actionCreators';
 import { loggedInLocalStorageHalper } from '../config/helpers';
 import { apiGetPosts, apiLoggedIn } from '../config/Api';
 

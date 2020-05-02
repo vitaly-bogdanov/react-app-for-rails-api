@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PostForm from './PostForm';
-
 import { apiCreatePost } from '../../config/Api';
-import axios from 'axios';
-
 import { connect } from 'react-redux';
 import { addPostCreator } from '../../redux/actions/actionCreators';
 

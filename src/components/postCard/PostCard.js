@@ -4,7 +4,6 @@ import { InView } from 'react-intersection-observer';
 import classes from './postCard.module.scss';
 import { post } from '../../config/routes';
 import { getDinamicPathForOneParam } from '../../config/helpers';
-import LinkButton from '../linkButton/LinkButton';
 
 const PostCardImage = lazy(() => import('../postCardImage/PostCardImage'));
 
