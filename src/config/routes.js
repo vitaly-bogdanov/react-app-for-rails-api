@@ -74,7 +74,7 @@ export const postUpdator = {
   component: PostUpdator,
   exact: false,
   access: {
-    guest: true,
+    guest: false,
     user: true,
     admin: true
   }
@@ -87,8 +87,8 @@ export const registration = {
   exact: false,
   access: {
     guest: true,
-    user: true,
-    admin: true
+    user: false,
+    admin: false
   }
 }
 
@@ -99,7 +99,7 @@ export const authentication = {
   exact: false,
   access: {
     guest: true,
-    user: true,
-    admin: true
+    user: false,
+    admin: false
   }
 }
