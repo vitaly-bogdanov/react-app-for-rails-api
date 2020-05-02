@@ -25,20 +25,20 @@ const RegistrationForm = props => {
       initialValues={initialValues}
       onSubmit={async (values, actions) => {
         let response = await props.registration(values);
-        // if (response.status === 201) {
-        //   actions.resetForm(initialValues);
-        //   props.history.push(postsList.path);
-          // props.authorizationAction(response.data);
-        // } else if (response.status === 403) {
-        //   let errors = [];
-        //   Object.keys(response.errors).map((value, key) => {
-        //     errors = [
-        //       ...errors,
-        //       response.errors[value]
-        //     ];
-        //   });
-        //   setServerErrors(errors);
-        // }
+        console.dir(response);
+        if (response.status === 201) {
+          actions.resetForm(initialValues);
+          props.history.push(postsList.path);
+        } else if (response.status === 403) {
+          let errors = [];
+          Object.keys(response.errors).map((value, key) => {
+            errors = [
+              ...errors,
+              response.errors[value]
+            ];
+          });
+          setServerErrors(errors);
+        }
       }}
     >
       {

@@ -1,37 +1,27 @@
 import React from 'react';
 import RegistrationForm from './RegistrationForm';
-import axios from 'axios';
 import { authorizationCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
 import { loggedInLocalStorageHalper } from '../../config/helpers';
+import { apiRegistration } from '../../config/Api';
 
 const RegistrationFormContainer = props => {
   
   const registrationHandler = async values => {
-    let data = {
+    let formData = {
       name: values.name.trim().toLowerCase(),
       password: values.password.trim(),
       passwordConfirmation: values.passwordConfirmation.trim()
     };
-    try {
-      let response = await axios.post('http://localhost:3001/registrations', {
-        registrations: { ...data }
-      }, {
-        withCredentials: true
-      });
-      console.log(response);
-      // loggedInLocalStorageHalper(response.data.user);
-      return {status: response.status};
-    } catch(error) {
-      console.dir(error);
-      return {status: error.response.status, errors: error.response.data.errors};
-    }
+    return await apiRegistration(formData, response => {
+      props.authorizationAction(response.data);
+      loggedInLocalStorageHalper(response.data.user)
+    });
   }
 
   return (
     <RegistrationForm 
       registration={registrationHandler}
-      // authorizationAction={props.authorizationAction}
     />
   );
 }
