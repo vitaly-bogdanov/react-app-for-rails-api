@@ -11,7 +11,7 @@ class Error404 extends Component {
       <Fragment>
         <div className="container">
           <h1>404</h1>
-          <Link to={home.path} exact={home.exact}>{home.name}</Link>
+          <Link to={home.path}>{home.name}</Link>
         </div>
       </Fragment>
     );
