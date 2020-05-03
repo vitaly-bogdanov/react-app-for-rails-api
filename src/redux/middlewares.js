@@ -14,6 +14,6 @@ export const loggedInThunk = () => dispatch => {
     dispatch(getPostsCreator(response.data.posts));
     loggedInLocalStorageHalper(response.data.user);
   }, error => {
-    dispatch(getPostsCreator(error.response.data.posts));
+    error.response && dispatch(getPostsCreator(error.response.data.posts));
   });
 }
