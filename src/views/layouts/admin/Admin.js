@@ -6,21 +6,19 @@ import { connect } from 'react-redux';
 import { apiLogout } from '../../../config/Api';
 import { authorizationCreator } from '../../../redux/actions/actionCreators';
 import { withRouter } from 'react-router-dom';
-import { getUserFromLocalStorageHelper } from '../../../config/helpers';
+import { home } from '../../../config/routes';
 
 class Admin extends Component {
 
   logout() {
-    console.log(getUserFromLocalStorageHelper());
-    console.dir(localStorage.user);
-    // apiLogout(response => {
-    //   //console.log(response);
-    //   console.log(this.props);
-    //   // сбрасываем user state
-    //   //this.props.authorizationAction({name: 'No name', access: 'guest'});
-    //   // очищаем localStorage
-    //   //localStorage.removeItem('user');
-    // }); 
+    apiLogout(response => {
+      // сбрасываем user state
+      this.props.authorizationAction({name: 'No name', access: 'guest'});
+      // очищаем localStorage
+      localStorage.removeItem('user');
+      // переходим на главну страницу
+      this.props.history.push(home.path);
+    }); 
   }
   
   render() {
