@@ -101,7 +101,25 @@ export const apiRegistration = async (formData, callbackResponse, callbackError)
 }
 
 // авторизация
-
+export const apiLogin = async (formData, callbackResponse, callbackError) => {
+  try {
+    let response = await axios({
+      method: routesApi.v1.sessions.login.method,
+      url: apiUrlHelper(routesApi.v1.sessions.login.path),
+      data: formData,
+      withCredentials: true
+    });
+    callbackResponse 
+      ? callbackResponse(response) 
+      : console.error('Не передана функция обратного вызова, обрабатывающая ответ от сервера');
+    return {status: response.status};
+  } catch (error) {
+    callbackError
+      ? callbackError(error) 
+      : console.error('Не передана функция обратного вызова, обрабатывающая ответ от сервера');
+    return {status: error.response.status, errors: error.response.data.errors};
+  }
+}
 
 // выход
 export const apiLogout = async (callbackResponse, callbackError) => {

@@ -8,7 +8,8 @@
     },
     "sessions": {
       "loggedIn": {"path": "/api/v1/sessions/logged-in", "method": "get"},
-      "logout": {"path": "/api/v1/sessions/logout", "method": "delete"}
+      "logout": {"path": "/api/v1/sessions/logout", "method": "delete"},
+      "login": {"path": "/api/v1/sessions/login", "method": "post"}
     },
     "users": {
       "create": {"path": "/api/v1/users/create", "method": "post"}

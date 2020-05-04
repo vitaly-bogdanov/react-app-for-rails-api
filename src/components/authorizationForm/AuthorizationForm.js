@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import TextInput from '../textInput/TextInput';
-import { 
-  textValidationCreator, 
-  validatePasswordCreator
-} from '../../config/validates';
+import { textValidationCreator, validatePasswordCreator } from '../../config/validates';
 import { getValidateClassHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
@@ -20,13 +17,11 @@ const AuthorizationForm = props => {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={ async (values, actions) => {
+      onSubmit={async (values, actions) => {
         let response = await props.authorization(values);
-        if (response.status === 200) {
-          actions.resetForm(initialValues);
+        if (response.status === 201) {
           props.history.push(postsList.path);
-          props.authorizationAction(response.data);
-        } else if (response.status === 401) {
+        } else if (response.status === 403) {
           let errors = [];
           Object.keys(response.errors).map((value, key) => {
             errors = [
@@ -34,7 +29,6 @@ const AuthorizationForm = props => {
               response.errors[value]
             ];
           });
-          console.log(errors);
           setServerErrors(errors);
         }
       }}
@@ -62,6 +56,10 @@ const AuthorizationForm = props => {
       }
     </Formik>
   );
+}
+
+AuthorizationForm.propTypes = {
+
 }
 
 export default withRouter(AuthorizationForm);

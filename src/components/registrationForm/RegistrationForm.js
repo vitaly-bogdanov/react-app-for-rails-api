@@ -25,10 +25,8 @@ const RegistrationForm = props => {
       initialValues={initialValues}
       onSubmit={async (values, actions) => {
         let response = await props.registration(values);
-        console.dir(response);
         if (response.status === 201) {
           actions.resetForm(initialValues);
-          props.history.push(postsList.path);
         } else if (response.status === 403) {
           let errors = [];
           Object.keys(response.errors).map((value, key) => {

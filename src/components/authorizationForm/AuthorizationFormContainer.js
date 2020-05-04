@@ -1,30 +1,26 @@
 import React from 'react';
-import axios from 'axios';
 import AuthorizationForm from './AuthorizationForm';
 import { authorizationCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
+import { apiLogin } from '../../config/Api';
+import { loggedInLocalStorageHalper } from '../../config/helpers';
 
 const AuthorizationFormContainer = props => {
 
   const authorizationHandler = async values => {
-    let data = {
+    let formData = {
       name: values.name.trim().toLowerCase(),
       password: values.password.trim()
     };
-    try {
-      let response = await axios.post('http://localhost:3001/authorization', {
-        authorization: { ...data }
-      });
-      return {status: response.status};
-    } catch(error) {
-      return {status: error.response.status, errors: error.response.data.errors};
-    }
+    return await apiLogin(formData, response => {
+      props.authorizationAction(response.data.user); // внести данные в state
+      loggedInLocalStorageHalper(response.data.user); // внести данные в localStorage
+    });
   }
 
   return (
     <AuthorizationForm 
       authorization={authorizationHandler}
-      authorizationAction={props.authorizationAction}
     />
   );
 }
