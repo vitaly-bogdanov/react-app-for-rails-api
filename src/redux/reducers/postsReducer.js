@@ -6,14 +6,16 @@ import {
 } from '../actions/actionTypes';
 
 const initialState = {
-  postsList: []
+  postsList: [],
+  loaded: false
 }
 
 const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_POSTS:
       return {
-        postsList: action.payload.posts
+        postsList: action.payload.posts,
+        loaded: true
       }
     case ADD_POST:
       return {

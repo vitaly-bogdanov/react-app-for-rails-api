@@ -6,6 +6,7 @@ import { getValidateClassHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
 import Alert from '../alert/Alert';
+import PropTypes from 'prop-types';
 
 const initialValues = {
   name: '',
@@ -59,7 +60,7 @@ const AuthorizationForm = props => {
 }
 
 AuthorizationForm.propTypes = {
-
+  authorization: PropTypes.func.isRequired
 }
 
 export default withRouter(AuthorizationForm);

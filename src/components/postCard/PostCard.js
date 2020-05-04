@@ -4,6 +4,7 @@ import { InView } from 'react-intersection-observer';
 import classes from './postCard.module.scss';
 import { post } from '../../config/routes';
 import { getDinamicPathForOneParam } from '../../config/helpers';
+import PropTypes from 'prop-types';
 
 const PostCardImage = lazy(() => import('../postCardImage/PostCardImage'));
 
@@ -32,5 +33,12 @@ const PostCard = props => (
     </div>
   </div>
 );
+
+PostCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  postId: PropTypes.number.isRequired,
+  imageLink: PropTypes.string.isRequired
+}
 
 export default PostCard;

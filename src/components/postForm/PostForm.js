@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { Form, Formik } from 'formik';
 import TextInput from '../textInput/TextInput';
 import FileInput from '../fileInput/FileInput';
-import { 
-  textValidationCreator
-} from '../../config/validates';
+import { textValidationCreator } from '../../config/validates';
 import { getValidateClassHelper } from '../../config/helpers'
 import Alert from '../alert/Alert';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
+import PropTypes from 'prop-types';
 
 const PostForm = props => {
   let [serverImageError, setServerImageError] = useState([]);
@@ -63,6 +62,11 @@ const PostForm = props => {
       }
     </Formik>
   );
+}
+
+PostForm.propTypes = {
+  sendPost: PropTypes.func.isRequired,
+  initialValues: PropTypes.array.isRequired
 }
 
 export default withRouter(PostForm);

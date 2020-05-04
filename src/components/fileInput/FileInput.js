@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const FileInput = props => {
 
@@ -17,6 +18,10 @@ const FileInput = props => {
       
     </div>
   );
+}
+
+FileInput.propTypes = {
+  name: PropTypes.string.isRequired
 }
 
 export default FileInput;

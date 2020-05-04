@@ -1,5 +1,6 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik'; 
+import PropTypes from 'prop-types';
 
 const TextInput = props => {
 
@@ -22,6 +23,12 @@ const TextInput = props => {
       </small>
     </div>
   );
+}
+
+TextInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  type: PropTypes.string,
+  validate: PropTypes.string
 }
 
 export default TextInput;

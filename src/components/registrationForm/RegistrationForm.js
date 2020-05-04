@@ -6,6 +6,7 @@ import { getValidateClassHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
 import Alert from '../alert/Alert';
+import PropTypes from 'prop-types';
 
 const initialValues = {
   name: '',
@@ -66,6 +67,10 @@ const RegistrationForm = props => {
       }
     </Formik>
   );
+}
+
+RegistrationForm.propTypes = {
+  registration: PropTypes.func.isRequired
 }
 
 export default withRouter(RegistrationForm);
