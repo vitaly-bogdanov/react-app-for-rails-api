@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form } from 'formik';
 import TextInput from '../textInput/TextInput';
-import { 
-  textValidationCreator, 
-  confirmValidatePasswordCreator,
-  validatePasswordCreator
-} from '../../config/validates';
+import { textValidationCreator, confirmValidatePasswordCreator, validatePasswordCreator } from '../../config/validates';
 import { getValidateClassHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
@@ -26,7 +22,7 @@ const RegistrationForm = props => {
       onSubmit={async (values, actions) => {
         let response = await props.registration(values);
         if (response.status === 201) {
-          actions.resetForm(initialValues);
+          props.history.push(postsList.path);
         } else if (response.status === 403) {
           let errors = [];
           Object.keys(response.errors).map((value, key) => {
