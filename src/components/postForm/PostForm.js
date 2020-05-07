@@ -33,7 +33,6 @@ const PostForm = props => {
       {
         ({errors, touched, values}) => (
           <Form encType="multipart/form-data">
-
             {
               serverImageError.length !== 0 ? <Alert type="danger" errors={serverImageError} /> : null
             }

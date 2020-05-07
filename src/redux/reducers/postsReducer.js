@@ -7,7 +7,8 @@ import {
 
 const initialState = {
   postsList: [],
-  loaded: false
+  loaded: false,
+  count: 0
 }
 
 const postsReducer = (state = initialState, action) => {
@@ -15,14 +16,16 @@ const postsReducer = (state = initialState, action) => {
     case GET_POSTS:
       return {
         postsList: action.payload.posts,
-        loaded: true
+        loaded: true,
+        count: action.payload.posts.length
       }
     case ADD_POST:
       return {
         postsList: [
           ...state.postsList,
           action.payload.post
-        ]
+        ],
+        count: state.postsList.count++
       }
     case UPDATE_POST:
       return {
@@ -33,7 +36,8 @@ const postsReducer = (state = initialState, action) => {
       }
     case DELETE_POST:
       return {
-        postsList: state.postsList.filter(post => post.id !== action.payload.id)
+        postsList: state.postsList.filter(post => post.id !== action.payload.id),
+        count: state.postsList.count--
       }
     default:
       return state

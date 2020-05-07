@@ -18,10 +18,7 @@ const AppRouting = props => {
             />) : null
         })
       }
-      <Route 
-        path="/404"
-        component={Error404} 
-      />
+      
       <Redirect to="/404" />
     </Switch>
   );

@@ -3,8 +3,9 @@ import Client from '../../../layouts/client/Client';
 import { posts } from '../../../../config/routes';
 import classes from './posts.module.scss';
 import PostCard from '../../../../components/postCard/PostCard';
-import { connect } from 'react-redux';
 import Preloader from '../../../../components/preloader/Preloader';
+import Pagination from '../../../../components/pagination/Pagination';
+import PropTypes from 'prop-types';
 
 class Posts extends React.Component {
   render() {
@@ -16,7 +17,7 @@ class Posts extends React.Component {
             <div className={classes.postsList}>
               {
                 this.props.loadedPosts ? (
-                  this.props.postsList.map((post, key) => (
+                  this.props.getPostsLists().map((post, key) => (
                     <PostCard
                       key={key}
                       title={post.title}
@@ -28,6 +29,14 @@ class Posts extends React.Component {
                 ) : <Preloader />
               }
             </div>
+            {
+              (this.props.loadedPosts & this.props.countPosts !== 0) ? (
+                <Pagination 
+                  tottalCountPosts={this.props.countPosts}
+                  pageCountPosts={this.props.perPage}
+                />
+              ) : null
+            }
           </div>
         </section>
       </Client>   
@@ -35,9 +44,4 @@ class Posts extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  postsList: state.posts.postsList,
-  loadedPosts: state.posts.loaded
-});
-
-export default connect(mapStateToProps)(Posts);
+export default Posts;

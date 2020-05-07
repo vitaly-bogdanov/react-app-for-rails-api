@@ -10,11 +10,13 @@ export const apiCreatePost = async (formData, callbackResponse, callbackError) =
       method: routesApi.v1.posts.create.method,
       url: apiUrlHelper(routesApi.v1.posts.create.path),
       data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data' },
+      withCredentials: true
     });
     callbackResponse && callbackResponse(response);
     return {status: response.status};
   } catch (error) {
+    console.dir(error);
     callbackError && callbackError();
     return {status: error.response.status, errors: error.response.data.errors};
   }
@@ -43,7 +45,8 @@ export const apiUpdatePost = async (formData, id, callbackResponse, callbackErro
       method: routesApi.v1.posts.update.method,
       url: apiUrlHelper(routesApi.v1.posts.update.path, id),
       data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' }
+      headers: { 'Content-Type': 'multipart/form-data' },
+      withCredentials: true
     });
     callbackResponse && callbackResponse(response);
     return {status: response.status};
@@ -61,7 +64,8 @@ export const apiDeletePost = async (id, callbackResponse, callbackError) => {
   try {
     let response = await axios({
       method: routesApi.v1.posts.delete.method,
-      url: apiUrlHelper(routesApi.v1.posts.delete.path, id)
+      url: apiUrlHelper(routesApi.v1.posts.delete.path, id),
+      withCredentials: true
     });
     callbackResponse && callbackResponse(response);
   } catch (error) {

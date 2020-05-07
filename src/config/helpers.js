@@ -29,3 +29,11 @@ export const apiUrlHelper = (url, id) => {
     return baseUrl + url;
   }
 }
+
+export const getPageNumber = (props) => {
+  if (props.location.search) {
+    return parseInt(props.location.search.split('=')[1]);
+  } else {
+    return 1;
+  }
+}

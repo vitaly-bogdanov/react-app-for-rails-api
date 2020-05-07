@@ -9,6 +9,8 @@ import PostUpdator from '../views/pages/admin/postUpdator/PostUpdator';
 import Registration from '../views/pages/client/registration/Registration';
 import Authentication from '../views/pages/client/authentication/Authentication';
 
+import Error404 from '../views/errors/404/Error404';
+
 export const home = {
   name: 'Главная',
   path: '/',
@@ -102,5 +104,17 @@ export const authentication = {
     guest: true,
     user: false,
     admin: false
+  }
+}
+
+export const error404 = {
+  name: '404',
+  path: '/404',
+  component: Error404,
+  exact: false,
+  access: {
+    guest: true,
+    user: true,
+    admin: true
   }
 }
