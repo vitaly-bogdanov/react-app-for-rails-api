@@ -49,6 +49,7 @@ export const postsList = {
   name: 'Все записи',
   path: '/posts-list',
   component: PostsList,
+  exact: false,
   access: {
     guest: false,
     user: true,

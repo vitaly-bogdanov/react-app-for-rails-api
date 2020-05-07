@@ -33,7 +33,7 @@ const PostString = props => (
 
 PostString.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
   to: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   deletePost: PropTypes.func.isRequired

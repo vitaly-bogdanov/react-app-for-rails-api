@@ -28,7 +28,7 @@ const TextInput = props => {
 TextInput.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  validate: PropTypes.string
+  validate: PropTypes.func
 }
 
 export default TextInput;

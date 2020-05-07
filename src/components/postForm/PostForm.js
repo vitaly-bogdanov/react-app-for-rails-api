@@ -66,7 +66,7 @@ const PostForm = props => {
 
 PostForm.propTypes = {
   sendPost: PropTypes.func.isRequired,
-  initialValues: PropTypes.array.isRequired
+  initialValues: PropTypes.object.isRequired
 }
 
 export default withRouter(PostForm);
