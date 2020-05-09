@@ -25,13 +25,15 @@ const postsReducer = (state = initialState, action) => {
           ...state.postsList,
           action.payload.post
         ],
-        count: state.postsList.count++
+        loaded: state.loaded,
+        count: state.count + 1
       }
     case UPDATE_POST:
       return {
+        ...state,
         postsList: [
-          ...state.postsList.filter(post => post.id !== action.payload.post.id),
-          action.payload.post
+          action.payload.post,
+          ...state.postsList.filter(post => post.id !== action.payload.post.id)
         ]
       }
     case DELETE_POST:
