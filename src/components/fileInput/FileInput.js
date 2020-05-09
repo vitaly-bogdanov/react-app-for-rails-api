@@ -15,7 +15,6 @@ const FileInput = props => {
         }}
       />
       <label className="custom-file-label " htmlFor={props.name}>Фото</label>
-      
     </div>
   );
 }
