@@ -13,7 +13,7 @@ const Alert = props => (
 
 Alert.propTypes = {
   type: PropTypes.string.isRequired,
-  errors: PropTypes.arrayOf(PropTypes.array).isRequired,
+  errors: PropTypes.array.isRequired,
 };
 
 export default Alert;

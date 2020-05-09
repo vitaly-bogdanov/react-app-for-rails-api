@@ -15,32 +15,20 @@ const initialValues = {
 }
 
 const RegistrationForm = props => {
-  let [serverErrors, setServerErrors] = useState([]);
-
+  let [serverErrors, setServerErrors] = useState({errors: [], hasErrors: false});
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, actions) => {
-        let response = await props.registration(values);
-        if (response.status === 201) {
-          props.history.push(postsList.path);
-        } else if (response.status === 403) {
-          let errors = [];
-          Object.keys(response.errors).map((value, key) => {
-            errors = [
-              ...errors,
-              response.errors[value]
-            ];
-          });
-          setServerErrors(errors);
-        }
+      onSubmit={async (values) => {
+        let errorsArray = await props.registration(values);
+        setServerErrors && setServerErrors({errors: errorsArray, hasErrors: true});
       }}
     >
       {
         ({errors, touched, values}) => (
           <Form>
             {
-              serverErrors.length !== 0 && <Alert type="danger" errors={serverErrors} />
+              serverErrors.hasErrors && <Alert type="danger" errors={serverErrors.errors} />
             }
             <TextInput 
               name='name'

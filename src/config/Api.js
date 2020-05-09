@@ -97,10 +97,12 @@ export const apiRegistration = async (formData, callbackResponse, callbackError)
       withCredentials: true
     });
     callbackResponse && callbackResponse(response);
-    return {status: response.status};
+    return [];
   } catch (error) {
     callbackError && callbackError(error);
-    return {status: error.response.status, errors: error.response.data.errors};
+    let errors = Object.values(error.response.data.errors)
+                        .reduce((errorsArray, err) => errorsArray.concat(err), []);
+    return errors;
   }
 }
 
@@ -116,12 +118,10 @@ export const apiLogin = async (formData, callbackResponse, callbackError) => {
     callbackResponse 
       ? callbackResponse(response) 
       : console.error('Не передана функция обратного вызова, обрабатывающая ответ от сервера');
-    return {status: response.status};
+    return [];
   } catch (error) {
-    callbackError
-      ? callbackError(error) 
-      : console.error('Не передана функция обратного вызова, обрабатывающая ответ от сервера');
-    return {status: error.response.status, errors: error.response.data.errors};
+    callbackError && callbackError(error) 
+    return error.response.data.errors;
   }
 }
 

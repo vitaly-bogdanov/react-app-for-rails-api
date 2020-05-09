@@ -17,21 +17,6 @@ class PostFormUpdateContainer extends Component {
     return await apiUpdatePost(formData, this.props.match.params.id, response => {
       this.props.updatePost(response.data);
     });
-    // try {
-    //   let response = await axios.post(`http://localhost:3001/update/${values.id}`, formData, {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   });
-    //   this.props.updatePost(response.data);
-    //   return {status: response.status};
-    // } catch(error) {
-    //   if (error.response.status === 422) {
-    //     return {status: error.response.status, errors: error.response.data.errors};
-    //   } else {
-    //     console.error(error);
-    //   }
-    // }
   }
 
   render() {

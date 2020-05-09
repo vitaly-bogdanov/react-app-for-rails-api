@@ -4,6 +4,8 @@ import { authorizationCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
 import { loggedInLocalStorageHalper } from '../../config/helpers';
 import { apiRegistration } from '../../config/Api';
+import { withRouter } from 'react-router-dom';
+import { postsList } from '../../config/routes';
 
 const RegistrationFormContainer = props => {
   
@@ -15,7 +17,8 @@ const RegistrationFormContainer = props => {
     };
     return await apiRegistration(formData, response => {
       props.authorizationAction(response.data.user);
-      loggedInLocalStorageHalper(response.data.user)
+      loggedInLocalStorageHalper(response.data.user);
+      props.history.push(postsList.path);
     });
   }
 
@@ -30,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
   authorizationAction: user => dispatch(authorizationCreator(user))
 });
 
-export default connect(null, mapDispatchToProps)(RegistrationFormContainer);
+export default withRouter(connect(null, mapDispatchToProps)(RegistrationFormContainer));

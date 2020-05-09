@@ -4,7 +4,6 @@ import TextInput from '../textInput/TextInput';
 import { textValidationCreator, validatePasswordCreator } from '../../config/validates';
 import { getValidateClassHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
-import { postsList } from '../../config/routes';
 import Alert from '../alert/Alert';
 import PropTypes from 'prop-types';
 
@@ -14,31 +13,20 @@ const initialValues = {
 }
 
 const AuthorizationForm = props => {
-  let [serverErrors, setServerErrors] = useState([]);
+  const [serverErrors, setServerErrors] = useState({errors: [], hasErrors: false});
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={async (values, actions) => {
-        let response = await props.authorization(values);
-        if (response.status === 201) {
-          props.history.push(postsList.path);
-        } else if (response.status === 403) {
-          let errors = [];
-          Object.keys(response.errors).map((value, key) => {
-            errors = [
-              ...errors,
-              response.errors[value]
-            ];
-          });
-          setServerErrors(errors);
-        }
+      onSubmit={async (values) => {
+        let errorsArray = await props.authorization(values);
+        errorsArray && setServerErrors({errors: errorsArray, hasErrors: true});
       }}
     >
       {
-        ({errors, touched, values}) => (
+        ({errors, touched}) => (
           <Form>
             {
-              serverErrors.length !== 0 && <Alert type="danger" errors={serverErrors} />
+              serverErrors.hasErrors && <Alert type="danger" errors={serverErrors.errors} />
             }
             <TextInput 
               name='name'

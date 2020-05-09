@@ -3,7 +3,8 @@ import {
   DELETE_POST,
   ADD_POST,
   UPDATE_POST,
-  AUTHORIZATION
+  AUTHORIZATION,
+  SET_AUTHORIZATION_ERRORS
 } from './actionTypes';
 
 export const getPostsCreator = posts => ({
@@ -29,4 +30,9 @@ export const updatePostCreator = post => ({
 export const authorizationCreator = user => ({
   type: AUTHORIZATION,
   payload: { user }
+});
+
+export const setAuthorizationErrorsCreator = errors => ({
+  type: SET_AUTHORIZATION_ERRORS,
+  payload: { errors }
 });
