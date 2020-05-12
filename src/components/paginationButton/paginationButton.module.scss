@@ -1,0 +1,27 @@
+.paginationButton {
+  padding: 5px;
+  font-size: 16px;
+  border-radius: 3px;
+  border: 1px solid blue;
+  margin-left: 5px;
+  margin-right: 5px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.itemButton {
+  color: blue;
+  background-color: #fff;
+  transition: color .3s ease, background-color .3s ease;
+  &:hover {
+    color: white;
+    background-color: blue;
+  }
+}
+
+.active {
+  color: white;
+  background-color: blue;
+}
