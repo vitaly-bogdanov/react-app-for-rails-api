@@ -31,8 +31,3 @@ export const authorizationCreator = user => ({
   type: AUTHORIZATION,
   payload: { user }
 });
-
-export const setAuthorizationErrorsCreator = errors => ({
-  type: SET_AUTHORIZATION_ERRORS,
-  payload: { errors }
-});

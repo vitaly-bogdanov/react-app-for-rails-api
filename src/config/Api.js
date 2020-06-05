@@ -107,7 +107,7 @@ export const apiRegistration = async (formData, callbackResponse, callbackError)
 }
 
 // авторизация
-export const apiLogin = async (formData, callbackResponse, callbackError) => {
+export const apiLogin = async (formData, callbackResponse) => {
   try {
     let response = await axios({
       method: routesApi.v1.sessions.login.method,
@@ -120,7 +120,6 @@ export const apiLogin = async (formData, callbackResponse, callbackError) => {
       : console.error('Не передана функция обратного вызова, обрабатывающая ответ от сервера');
     return [];
   } catch (error) {
-    callbackError && callbackError(error) 
     return error.response.data.errors;
   }
 }
