@@ -2,7 +2,7 @@ import React from 'react';
 import RegistrationForm from './RegistrationForm';
 import { authorizationCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
-import { loggedInLocalStorageHalper } from '../../config/helpers';
+import { loggedInLocalStorageHelper } from '../../config/helpers';
 import { apiRegistration } from '../../config/Api';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
@@ -17,7 +17,7 @@ const RegistrationFormContainer = props => {
     };
     return await apiRegistration(formData, response => {
       props.authorizationAction(response.data.user);
-      loggedInLocalStorageHalper(response.data.user);
+      loggedInLocalStorageHelper(response.data.user);
       props.history.push(postsList.path);
     });
   }

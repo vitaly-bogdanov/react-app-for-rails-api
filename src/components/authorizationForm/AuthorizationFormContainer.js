@@ -3,7 +3,7 @@ import AuthorizationForm from './AuthorizationForm';
 import { authorizationCreator, setAuthorizationErrorsCreator } from '../../redux/actions/actionCreators';
 import { connect } from 'react-redux';
 import { apiLogin } from '../../config/Api';
-import { loggedInLocalStorageHalper } from '../../config/helpers';
+import { loggedInLocalStorageHelper } from '../../config/helpers';
 import { withRouter } from 'react-router-dom';
 import { postsList } from '../../config/routes';
 
@@ -16,7 +16,7 @@ const AuthorizationFormContainer = props => {
     };
     return await apiLogin(formData, response => {
       props.authorizationAction(response.data.user); // внести данные в state
-      loggedInLocalStorageHalper(response.data.user); // внести данные в localStorage
+      loggedInLocalStorageHelper(response.data.user); // внести данные в localStorage
       props.history.push(postsList.path); // переходим в админку
     });
   }

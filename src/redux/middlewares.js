@@ -1,5 +1,5 @@
 import { getPostsCreator, authorizationCreator } from './actions/actionCreators';
-import { loggedInLocalStorageHalper } from '../config/helpers';
+import { loggedInLocalStorageHelper } from '../config/helpers';
 import { apiGetPosts, apiLoggedIn } from '../config/Api';
 
 // подгрузить все посты
@@ -12,7 +12,7 @@ export const loggedInThunk = () => dispatch => {
   apiLoggedIn(response => {
     dispatch(authorizationCreator(response.data.user));
     dispatch(getPostsCreator(response.data.posts));
-    loggedInLocalStorageHalper(response.data.user);
+    loggedInLocalStorageHelper(response.data.user);
   }, error => {
     error.response && dispatch(getPostsCreator(error.response.data.posts));
   });

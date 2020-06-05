@@ -12,7 +12,7 @@ export const getDinamicPathForOneParam = (path, param) => {
   return `${path.split(':')[0]}${param}`;
 }
 
-export const loggedInLocalStorageHalper = user => {
+export const loggedInLocalStorageHelper = user => {
   localStorage.user = JSON.stringify(user);
 }
 
