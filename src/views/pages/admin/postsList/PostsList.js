@@ -7,30 +7,28 @@ import { getDinamicPathForOneParam } from '../../../../config/helpers';
 class PostsList extends Component {
   render() {
     return (
-      <Admin>
-        <section>
-          <div className="container">
-            <h1>posts list</h1>
-            <ul className="list-group">
-              {
-                this.props.posts.map(post => {
-                  return (
-                    <PostString 
-                      key={post.id}
-                      id={post.id}
-                      title={post.title} 
-                      to={getDinamicPathForOneParam(postUpdator.path, post.id)} 
-                      image={post.thumb_image} 
+      <section>
+        <div className="container">
+          <h1>posts list</h1>
+          <ul className="list-group">
+            {
+              this.props.posts.map(post => {
+                return (
+                  <PostString 
+                    key={post.id}
+                    id={post.id}
+                    title={post.title} 
+                    to={getDinamicPathForOneParam(postUpdator.path, post.id)} 
+                    image={post.thumb_image} 
 
-                      deletePost={this.props.deletePost}
-                    />
-                  );
-                })
-              }
-            </ul>
-          </div>
-        </section>
-      </Admin>
+                    deletePost={this.props.deletePost}
+                  />
+                );
+              })
+            }
+          </ul>
+        </div>
+      </section>
     );
   }
 }

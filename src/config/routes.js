@@ -11,10 +11,14 @@ import Authentication from '../views/pages/client/authentication/Authentication'
 
 import Error404 from '../views/errors/404/Error404';
 
+import Client from '../views/layouts/client/Client';
+import Admin from '../views/layouts/admin/Admin';
+
 export const home = {
   name: 'Главная',
   path: '/',
-  component: Home,
+  page: Home,
+  layout: Client,
   exact: true,
   access: {
     guest: true,
@@ -26,7 +30,8 @@ export const home = {
 export const posts = {
   name: 'Все посты',
   path: '/posts',
-  component: Posts,
+  page: Posts,
+  layout: Client,
   exact: true,
   access: {
     guest: true,
@@ -38,7 +43,8 @@ export const posts = {
 export const post = {
   name: '',
   path: '/posts/:id',
-  component: Post,
+  page: Post,
+  layout: Client,
   exact: false,
   access: {
     guest: true,
@@ -50,7 +56,8 @@ export const post = {
 export const postsList = {
   name: 'Все записи',
   path: '/posts-list',
-  component: PostsList,
+  page: PostsList,
+  layout: Admin,
   exact: false,
   access: {
     guest: false,
@@ -62,7 +69,8 @@ export const postsList = {
 export const postCreator = {
   name: 'Создать пост',
   path: '/post-create',
-  component: PostCreator,
+  page: PostCreator,
+  layout: Admin,
   exact: false,
   access: {
     guest: false,
@@ -74,7 +82,8 @@ export const postCreator = {
 export const postUpdator = {
   name: 'Редактировать пост',
   path: '/post-update/:id',
-  component: PostUpdator,
+  page: PostUpdator,
+  layout: Admin,
   exact: false,
   access: {
     guest: false,
@@ -86,7 +95,8 @@ export const postUpdator = {
 export const registration = {
   name: 'Регистрация',
   path: '/registration',
-  component: Registration,
+  page: Registration,
+  layout: Admin,
   exact: false,
   access: {
     guest: true,
@@ -98,7 +108,8 @@ export const registration = {
 export const authentication = {
   name: 'Авторизация',
   path: '/authentication',
-  component: Authentication,
+  page: Authentication,
+  layout: Admin,
   exact: false,
   access: {
     guest: true,
@@ -110,7 +121,7 @@ export const authentication = {
 export const error404 = {
   name: '404',
   path: '/404',
-  component: Error404,
+  page: Error404,
   exact: false,
   access: {
     guest: true,

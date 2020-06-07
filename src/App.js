@@ -5,11 +5,9 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import * as routes from './config/routes';
 
 class App extends Component {
-
   componentDidMount() {
     this.props.loggedIn();
   }
-
   render() {
     return (
       <Switch>
@@ -20,7 +18,7 @@ class App extends Component {
                   key={key} 
                   path={route.path} 
                   exact={route.exact}
-                  component={route.component}
+                  children={() => <route.layout><route.page /></route.layout>}
               />) : null
           })
         }

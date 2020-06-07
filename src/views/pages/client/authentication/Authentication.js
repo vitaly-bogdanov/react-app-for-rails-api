@@ -7,14 +7,12 @@ class Authentication extends Component {
   
   render() {
     return (
-      <Client>
-          <section>
-            <div className="container">
-              <h1>{authentication.name}</h1>
-              <AuthorizationFormContainer />
-            </div>
-          </section>
-      </Client>
+      <section>
+        <div className="container">
+          <h1>{authentication.name}</h1>
+          <AuthorizationFormContainer />
+        </div>
+      </section>
     );
   }
 }

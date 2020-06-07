@@ -3,16 +3,13 @@ import PostFormUpdateContainer from '../../../../components/postForm/PostFormUpd
 import Admin from '../../../layouts/admin/Admin';
 
 class PostUpdator extends Component {
-
   render() {
     return (
-      <Admin>
-        <section>
-          <div className="container">
-            <PostFormUpdateContainer />
-          </div>
-        </section>
-      </Admin>
+      <section>
+        <div className="container">
+          <PostFormUpdateContainer />
+        </div>
+      </section>
     );
   }
 }

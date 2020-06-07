@@ -12,33 +12,29 @@ class Post extends Component {
 
     const LargeImage = lazy(() => import('../../../../components/image/Image'));
     return (
-      <Client>
-        
-        <section>
-          <div className="container">
-            {
-              post ? (
-                <Fragment>
-                  <h1>{post.title}</h1>
-                  <div className={classes.imageBox}>
-                    <Suspense fallback={<p>Картинка загружается</p>}>
-                      <LargeImage src={post.large_image} alt={post.title} />
-                    </Suspense>
-                  </div>
-                  <p>{post.body}</p>
-                  <LinkButton 
-                    to={posts.path} 
-                    exact={posts.exact} 
-                    name="Назад"
-                    type="primary"
-                  />
-                </Fragment>
-              ) : <p>Загрузка...</p>
-            }
-            
-          </div>
-        </section>
-      </Client>
+      <section>
+        <div className="container">
+          {
+            post ? (
+              <Fragment>
+                <h1>{post.title}</h1>
+                <div className={classes.imageBox}>
+                  <Suspense fallback={<p>Картинка загружается</p>}>
+                    <LargeImage src={post.large_image} alt={post.title} />
+                  </Suspense>
+                </div>
+                <p>{post.body}</p>
+                <LinkButton 
+                  to={posts.path} 
+                  exact={posts.exact} 
+                  name="Назад"
+                  type="primary"
+                />
+              </Fragment>
+            ) : <p>Загрузка...</p>
+          }
+        </div>
+      </section>
     );
   }
 }

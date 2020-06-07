@@ -7,13 +7,11 @@ class Home extends React.Component {
   
   render() {
     return (
-      <Client>
-        <section>
-          <div className="container">
-            <h1>{home.name}</h1>
-          </div>
-        </section>
-      </Client>
+      <section>
+        <div className="container">
+          <h1>{home.name}</h1>
+        </div>
+      </section>
     );
   }
 }
