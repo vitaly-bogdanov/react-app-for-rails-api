@@ -96,7 +96,7 @@ export const registration = {
   name: 'Регистрация',
   path: '/registration',
   page: Registration,
-  layout: Admin,
+  layout: Client,
   exact: false,
   access: {
     guest: true,
@@ -109,7 +109,7 @@ export const authentication = {
   name: 'Авторизация',
   path: '/authentication',
   page: Authentication,
-  layout: Admin,
+  layout: Client,
   exact: false,
   access: {
     guest: true,
@@ -122,6 +122,7 @@ export const error404 = {
   name: '404',
   path: '/404',
   page: Error404,
+  layout: Client,
   exact: false,
   access: {
     guest: true,
