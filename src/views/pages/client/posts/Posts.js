@@ -5,7 +5,6 @@ import classes from './posts.module.scss';
 import PostCard from '../../../../components/postCard/PostCard';
 import Preloader from '../../../../components/preloader/Preloader';
 import Pagination from '../../../../components/pagination/Pagination';
-import PropTypes from 'prop-types';
 
 class Posts extends React.Component {
   render() {

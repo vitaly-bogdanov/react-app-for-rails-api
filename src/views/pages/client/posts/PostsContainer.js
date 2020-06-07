@@ -5,17 +5,17 @@ import { withRouter } from 'react-router-dom';
 import { getPageNumber } from '../../../../config/helpers';
 
 class PostsContainer extends Component {
-
   constructor(props) {
     super(props);
     this.perPage = 6;
   }
-
   getPostsListsHandler() {
     let pageNumber = getPageNumber(this.props);
     let countPages = Math.ceil(this.props.countPosts / this.perPage);
     if (pageNumber <= 0 || pageNumber > countPages) {
-      this.props.history.push('/404');
+      if (countPages !== 0) {
+        this.props.history.push('/404');
+      }
       return [];
     }
     return this.props.postsList.slice(pageNumber*this.perPage - this.perPage, pageNumber*this.perPage);

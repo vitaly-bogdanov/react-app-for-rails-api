@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import AppRouting from './config/AppRouting';
 import { connect } from 'react-redux';
-import { loggedInThunk, getPostsThunk } from './redux/middlewares';
+import { loggedInThunk  } from './redux/middlewares';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import * as routes from './config/routes';
 
 class App extends Component {
 
@@ -11,14 +12,30 @@ class App extends Component {
 
   render() {
     return (
-      <AppRouting />
+      <Switch>
+        {
+          Object.values(routes).map((route, key) => {
+            return route.access[this.props.access] ?
+              (<Route 
+                  key={key} 
+                  path={route.path} 
+                  exact={route.exact}
+                  component={route.component}
+              />) : null
+          })
+        }
+        <Redirect to="/404" />
+      </Switch>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  loggedIn: () => dispatch(loggedInThunk()),
-  getPosts: () => dispatch(getPostsThunk())
+const mapStateToProps = state => ({
+  access: state.authorization.user.access
 });
 
-export default connect(null, mapDispatchToProps)(App);
+const mapDispatchToProps = dispatch => ({
+  loggedIn: () => dispatch(loggedInThunk())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

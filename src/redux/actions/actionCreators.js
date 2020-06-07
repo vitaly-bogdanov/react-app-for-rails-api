@@ -3,8 +3,7 @@ import {
   DELETE_POST,
   ADD_POST,
   UPDATE_POST,
-  AUTHORIZATION,
-  SET_AUTHORIZATION_ERRORS
+  AUTHORIZATION
 } from './actionTypes';
 
 export const getPostsCreator = posts => ({
