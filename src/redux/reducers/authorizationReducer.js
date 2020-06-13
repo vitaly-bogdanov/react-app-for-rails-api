@@ -1,6 +1,5 @@
 import { 
-  AUTHORIZATION,
-  SET_AUTHORIZATION_ERRORS
+  AUTHORIZATION
 } from '../actions/actionTypes';
 import { getUserFromLocalStorageHelper } from '../../config/helpers';
 
@@ -16,11 +15,6 @@ const authorizationReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.user,
       };
-    case SET_AUTHORIZATION_ERRORS:
-      return {
-        ...state,
-        errors: action.payload.errors
-      }
     default:
       return state;
   }
