@@ -4,8 +4,7 @@ import {
 import { getUserFromLocalStorageHelper } from '../../config/helpers';
 
 const initialState = {
-  user: getUserFromLocalStorageHelper() || { name: 'No name', access: 'guest' },
-  errors: []
+  user: getUserFromLocalStorageHelper() || { name: 'No name', access: 'guest' }
 }
 
 const authorizationReducer = (state = initialState, action) => {
